@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import skypro.dao.EmployeeDAO;
 import skypro.entity.Employee;
 import java.util.List;
+import skypro.exceptions.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -23,7 +24,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public Employee getEmployeeById(int id) {
-        return EmployeeDAO.getEmployeeById(id);
+        Employee Employee = EmployeeDAO.getEmployeeById(id);
+        if (Employee == null)
+            throw new EmployeeException("Employee with id = " + id + " doesn't exist");
+        return Employee ;
     }
 
     @Override
@@ -41,7 +45,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void deleteEmployee(int id) {
+        Employee Employee = EmployeeDAO.getEmployeeById(id);
+        if (Employee == null)
+            throw new EmployeeException("Employee with id = " + id + " doesn't exist");
         EmployeeDAO.deleteEmployee(id);
     }
-
 }

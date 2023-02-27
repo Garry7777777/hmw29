@@ -3,8 +3,7 @@ package skypro.config;
 import org.springframework.context.annotation.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
@@ -21,7 +20,7 @@ public class ConfigNew {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("org.postgresql.Driver");
-            dataSource.setJdbcUrl("jdbc:postgresql:skypro");
+            dataSource.setJdbcUrl("jdbc:postgresql:skypro2");
             dataSource.setUser("postgres");
             dataSource.setPassword("1");
         } catch (PropertyVetoException e) {
@@ -38,6 +37,7 @@ public class ConfigNew {
         Properties properties = new Properties();
         properties.setProperty("dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.setProperty("show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto","update");
         sessionFactory.setHibernateProperties(properties);
         return sessionFactory;
     }
