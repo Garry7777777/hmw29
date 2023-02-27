@@ -6,7 +6,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
